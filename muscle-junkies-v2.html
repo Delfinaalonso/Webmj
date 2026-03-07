@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muscle Junkies — Suplementos Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.js">
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:        #0a0a0a;
+  --card:      #111111;
+  --card2:     #131313;
+  --border:    #2e2e2e;
+  --muted-bg:  #1a1a1a;
+  --muted:     #666666;
+  --muted-fg:  #a3a3a3;
+  --fg:        #ffffff;
+  --primary:   #4dff00;        /* hsl(110 100% 54%) */
+  --primary-dark: #33cc00;
+  --primary-fg:#0a0a0a;
+  --radius:    0.5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: inherit; }
+input { font-family: inherit; }
+
+/* ── UTILITIES ── */
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+@media(min-width:640px){ .container { padding: 0 1.5rem; } }
+@media(min-width:1024px){ .container { padding: 0 2rem; } }
+
+.neon-glow { text-shadow: 0 0 10px rgba(77,255,0,.5), 0 0 40px rgba(77,255,0,.2); }
+.neon-border { box-shadow: 0 0 15px rgba(77,255,0,.15), inset 0 0 15px rgba(77,255,0,.05); }
+.gradient-neon { background: linear-gradient(135deg, #4dff00, #28cc00); }
+
+.hover-lift { transition: transform .3s, box-shadow .3s; }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(77,255,0,.15); }
+
+.text-primary   { color: var(--primary); }
+.text-muted     { color: var(--muted-fg); }
+.text-fg        { color: var(--fg); }
+.bg-card        { background: var(--card); }
+.bg-card2       { background: var(--card2); }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: linear-gradient(135deg, #4dff00, #28cc00);
+  color: var(--primary-fg);
+  padding: .75rem 2rem; border-radius: var(--radius);
+  font-weight: 600; font-size: 1rem; border: none;
+  transition: opacity .2s; white-space: nowrap;
+}
+.btn-primary:hover { opacity: .88; }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent;
+  color: var(--primary); border: 1.5px solid var(--primary);
+  padding: .75rem 2rem; border-radius: var(--radius);
+  font-weight: 600; font-size: 1rem;
+  transition: background .2s, color .2s; white-space: nowrap;
+}
+.btn-outline:hover { background: var(--primary); color: var(--primary-fg); }
+
+.btn-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: var(--primary-fg);
+  padding: .5rem; border-radius: var(--radius); border: none;
+  transition: opacity .2s;
+}
+.btn-icon:hover { opacity: .85; }
+
+.tag-offer {
+  position: absolute; top: .75rem; left: .75rem;
+  background: linear-gradient(135deg,#4dff00,#28cc00);
+  color: var(--primary-fg); font-size: .7rem; font-weight: 700;
+  padding: .2rem .5rem; border-radius: .25rem; letter-spacing: .05em;
+}
+
+/* Stars */
+.stars { display: flex; gap: 1px; }
+.star { width: 14px; height: 14px; }
+.star-fill { fill: var(--primary); color: var(--primary); }
+.star-empty { fill: transparent; color: var(--muted); }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 64px;
+  display: flex; align-items: center;
+}
+.navbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 100%; width: 100%;
+}
+.navbar-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem; letter-spacing: .1em; color: var(--fg);
+}
+.navbar-logo span { color: var(--primary); }
+
+.navbar-links { display: flex; align-items: center; gap: 2rem; }
+.navbar-links a {
+  font-size: .875rem; font-weight: 500;
+  color: var(--muted-fg); transition: color .2s;
+}
+.navbar-links a:hover, .navbar-links a.active { color: var(--primary); }
+
+.navbar-right { display: flex; align-items: center; gap: 1rem; }
+.cart-btn {
+  position: relative; background: none; border: none;
+  color: var(--fg); padding: .5rem;
+  transition: color .2s;
+}
+.cart-btn:hover { color: var(--primary); }
+.cart-badge {
+  position: absolute; top: -.25rem; right: -.25rem;
+  width: 1.25rem; height: 1.25rem; border-radius: 50%;
+  background: var(--primary); color: var(--primary-fg);
+  font-size: .7rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.menu-btn {
+  display: none; background: none; border: none;
+  color: var(--fg); padding: .5rem;
+}
+@media(max-width:767px){
+  .navbar-links { display: none; }
+  .menu-btn { display: block; }
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 49;
+  background: var(--bg); border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem; flex-direction: column; gap: 1rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: .875rem; font-weight: 500; color: var(--muted-fg); transition: color .2s; }
+.mobile-menu a:hover, .mobile-menu a.active { color: var(--primary); }
+
+/* ── PAGE WRAPPERS ── */
+.page { display: none; }
+.page.active { display: block; }
+main { padding-top: 64px; min-height: 100vh; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 90vh;
+  display: flex; align-items: center; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0a1a0a 0%, #0f0f0f 40%, #0a0a0a 100%);
+}
+.hero-bg-img {
+  position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%;
+  opacity: .35;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, var(--bg) 20%, rgba(10,10,10,.75) 60%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 650px;
+  animation: fadeUp .8s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:none} }
+
+.hero h1 {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: .95; margin-bottom: 1rem;
+}
+.hero p { font-size: 1.05rem; color: var(--muted-fg); margin-bottom: 2rem; max-width: 440px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* ── SECTION SHARED ── */
+.section-py { padding: 5rem 0; }
+.section-py-lg { padding: 6rem 0; }
+.section-title { font-size: clamp(2.5rem, 5vw, 3.5rem); text-align: center; margin-bottom: .75rem; }
+.section-sub { text-align: center; color: var(--muted-fg); margin-bottom: 3rem; }
+
+/* ── PRODUCT GRID ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── PRODUCT CARD ── */
+.product-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+  animation: fadeUp .5s ease both;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(77,255,0,.15); }
+
+.product-card-img {
+  position: relative; aspect-ratio: 1/1; overflow: hidden;
+  background: var(--muted-bg);
+}
+.product-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s;
+}
+.product-card:hover .product-card-img img { transform: scale(1.1); }
+
+.product-card-body { padding: 1rem; }
+.product-card-cat { font-size: .75rem; color: var(--muted-fg); margin-bottom: .25rem; }
+.product-card-name {
+  font-weight: 600; color: var(--fg); margin-bottom: .5rem;
+  font-size: .95rem; transition: color .2s;
+}
+.product-card-name:hover { color: var(--primary); }
+.product-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .5rem; }
+.product-card-price { font-size: 1.1rem; font-weight: 700; }
+.product-card-old { font-size: .85rem; color: var(--muted-fg); text-decoration: line-through; margin-left: .4rem; }
+
+/* ── WHY US ── */
+.why-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.why-card {
+  text-align: center; padding: 2rem;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--bg);
+  transition: transform .3s, box-shadow .3s;
+}
+.why-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(77,255,0,.15); }
+.why-icon {
+  display: inline-flex; padding: 1rem; border-radius: 50%;
+  background: rgba(77,255,0,.1); margin-bottom: 1rem;
+}
+.why-icon svg { width: 2rem; height: 2rem; color: var(--primary); stroke: var(--primary); }
+.why-card h3 { font-size: 1.5rem; margin-bottom: .5rem; }
+.why-card p { font-size: .875rem; color: var(--muted-fg); }
+
+/* ── COMMUNITY BANNER ── */
+.community-section {
+  position: relative; padding: 6rem 0; overflow: hidden; text-align: center;
+}
+.community-bg { position: absolute; inset: 0; }
+.community-bg img { width: 100%; height: 100%; object-fit: cover; }
+.community-overlay { position: absolute; inset: 0; background: rgba(10,10,10,.75); }
+.community-content { position: relative; z-index: 2; }
+.community-content h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1rem; }
+.community-content p { color: var(--muted-fg); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; }
+
+/* ── BLOG GRID ── */
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.blog-card {
+  background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+  padding: 1.5rem; display: block;
+  transition: transform .3s, box-shadow .3s;
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(77,255,0,.15); }
+.blog-tag { font-size: .7rem; color: var(--primary); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .5rem; }
+.blog-card h3 { font-size: 1.25rem; color: var(--fg); margin-bottom: .5rem; transition: color .2s; }
+.blog-card:hover h3 { color: var(--primary); }
+.blog-card p { font-size: .85rem; color: var(--muted-fg); margin-bottom: 1rem; }
+.blog-read-more { color: var(--primary); font-size: .85rem; font-weight: 600; display: inline-flex; align-items: center; gap: .25rem; }
+
+/* ── SHOP PAGE ── */
+.shop-header { text-align: center; margin-bottom: 2.5rem; padding: 3rem 0 0; }
+.shop-header h1 { font-size: clamp(3rem, 7vw, 5rem); }
+.filter-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-bottom: 2.5rem; }
+.filter-btn {
+  padding: .45rem 1.25rem; border-radius: 9999px; font-size: .875rem; font-weight: 500;
+  border: none; transition: background .2s, color .2s; cursor: pointer;
+}
+.filter-btn.inactive { background: var(--muted-bg); color: var(--muted-fg); }
+.filter-btn.inactive:hover { background: var(--border); }
+.filter-btn.active { background: var(--primary); color: var(--primary-fg); }
+
+/* ── PRODUCT DETAIL PAGE ── */
+.detail-back { color: var(--muted-fg); font-size: .875rem; display: inline-flex; align-items: center; gap: .25rem; margin-bottom: 1.5rem; transition: color .2s; }
+.detail-back:hover { color: var(--primary); }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
+@media(max-width:767px){ .detail-grid { grid-template-columns: 1fr; } }
+
+.detail-img { border-radius: var(--radius); overflow: hidden; background: var(--card); border: 1px solid var(--border); aspect-ratio: 1/1; }
+.detail-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-cat { font-size: .875rem; color: var(--primary); font-weight: 600; margin-bottom: .25rem; }
+.detail-name { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+.detail-stars-row { display: flex; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.detail-stars-row span { font-size: .875rem; color: var(--muted-fg); }
+.detail-price { font-size: 1.9rem; font-weight: 700; margin-bottom: .25rem; }
+.detail-old-price { font-size: 1.1rem; color: var(--muted-fg); text-decoration: line-through; margin-left: .5rem; }
+.detail-desc { color: var(--muted-fg); margin-bottom: 1.5rem; line-height: 1.7; }
+
+.flavor-row { margin-bottom: 1.5rem; }
+.flavor-label { font-size: .875rem; font-weight: 600; margin-bottom: .5rem; }
+.flavor-btns { display: flex; flex-wrap: wrap; gap: .5rem; }
+.flavor-btn {
+  padding: .45rem 1rem; border-radius: var(--radius); font-size: .875rem;
+  background: none; border: 1px solid var(--border); color: var(--muted-fg);
+  cursor: pointer; transition: border-color .2s, color .2s, background .2s;
+}
+.flavor-btn.selected { border-color: var(--primary); background: rgba(77,255,0,.1); color: var(--primary); }
+.flavor-btn:hover { border-color: var(--primary); }
+
+.detail-add-btn {
+  width: 100%; margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  background: linear-gradient(135deg,#4dff00,#28cc00);
+  color: var(--primary-fg); padding: 1rem;
+  border-radius: var(--radius); font-weight: 600; font-size: 1.1rem;
+  border: none; cursor: pointer; transition: opacity .2s;
+}
+.detail-add-btn:hover { opacity: .88; }
+
+.detail-box { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
+.detail-box h3 { font-size: 1.2rem; margin-bottom: .75rem; }
+.benefits-list { display: flex; flex-direction: column; gap: .5rem; }
+.benefit-item { display: flex; align-items: flex-start; gap: .5rem; font-size: .875rem; color: var(--muted-fg); }
+.benefit-check { width: 16px; height: 16px; color: var(--primary); stroke: var(--primary); flex-shrink: 0; margin-top: 2px; }
+
+/* Reviews section */
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+.review-text { font-size: .875rem; color: var(--muted-fg); margin: .5rem 0; font-style: italic; }
+.review-name { font-size: .875rem; font-weight: 600; }
+
+/* ── QUIZ ── */
+.quiz-wrap { max-width: 640px; margin: 0 auto; padding: 3rem 1rem; }
+.quiz-icon { display: flex; justify-content: center; margin-bottom: 1rem; }
+.quiz-icon svg { width: 2.5rem; height: 2.5rem; color: var(--primary); stroke: var(--primary); }
+.quiz-progress { display: flex; justify-content: center; gap: .5rem; margin-top: 1rem; }
+.quiz-dot { height: 6px; width: 32px; border-radius: 999px; background: var(--muted-bg); transition: background .3s; }
+.quiz-dot.done { background: var(--primary); }
+.quiz-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-top: 2rem; }
+.quiz-num { font-size: .875rem; color: var(--muted-fg); margin-bottom: .5rem; }
+.quiz-q { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 1.5rem; }
+.quiz-options { display: flex; flex-direction: column; gap: .75rem; }
+.quiz-opt {
+  width: 100%; text-align: left; padding: 1rem 1.25rem;
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--fg); font-size: .95rem; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: border-color .2s, background .2s;
+}
+.quiz-opt:hover { border-color: var(--primary); background: rgba(77,255,0,.05); }
+.quiz-opt svg { width: 16px; height: 16px; color: var(--muted-fg); stroke: var(--muted-fg); transition: color .2s; }
+.quiz-opt:hover svg { color: var(--primary); stroke: var(--primary); }
+.quiz-back { font-size: .875rem; color: var(--muted-fg); background: none; border: none; display: flex; align-items: center; gap: .25rem; margin-top: 1rem; cursor: pointer; }
+.quiz-back:hover { color: var(--primary); }
+
+/* Results */
+.quiz-result-prod { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.quiz-result-prod img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius); flex-shrink: 0; background: var(--muted-bg); }
+.quiz-result-total { background: var(--card); border: 1px solid rgba(77,255,0,.3); border-radius: var(--radius); padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; box-shadow: 0 0 15px rgba(77,255,0,.15), inset 0 0 15px rgba(77,255,0,.05); }
+.quiz-result-total p { color: var(--muted-fg); font-size: .875rem; margin-bottom: .25rem; }
+.quiz-result-total .total-price { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--primary); }
+
+/* ── CART ── */
+.cart-empty { text-align: center; padding: 5rem 0; }
+.cart-empty svg { width: 4rem; height: 4rem; color: var(--muted-fg); stroke: var(--muted-fg); margin: 0 auto 1.5rem; }
+.cart-grid { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; }
+@media(max-width:900px){ .cart-grid { grid-template-columns: 1fr; } }
+.cart-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; display: flex; gap: 1rem; margin-bottom: 1rem; align-items: center; }
+.cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--radius); flex-shrink: 0; background: var(--muted-bg); }
+.cart-item-name { font-weight: 600; margin-bottom: .25rem; }
+.cart-item-flavor { font-size: .8rem; color: var(--muted-fg); }
+.cart-item-price { font-weight: 700; }
+.cart-qty { display: flex; align-items: center; gap: .5rem; }
+.cart-qty button { width: 28px; height: 28px; border-radius: var(--radius); background: var(--muted-bg); border: 1px solid var(--border); color: var(--fg); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
+.cart-qty button:hover { border-color: var(--primary); color: var(--primary); }
+.cart-qty span { min-width: 1.5rem; text-align: center; font-weight: 600; }
+.cart-remove { background: none; border: none; color: var(--muted-fg); cursor: pointer; transition: color .2s; margin-left: auto; }
+.cart-remove:hover { color: #ef4444; }
+.cart-summary { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: sticky; top: 5rem; }
+.cart-summary h3 { font-size: 1.5rem; margin-bottom: 1.25rem; }
+.cart-summary-row { display: flex; justify-content: space-between; font-size: .875rem; color: var(--muted-fg); margin-bottom: .75rem; }
+.cart-summary-row.total { border-top: 1px solid var(--border); padding-top: .75rem; margin-top: .75rem; font-size: 1.1rem; font-weight: 700; color: var(--fg); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2.5rem;
+  padding: 4rem 0 2rem;
+}
+.footer-brand h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.footer-col h4 { font-size: 1.1rem; margin-bottom: 1rem; }
+.footer-col a { display: block; font-size: .875rem; color: var(--muted-fg); margin-bottom: .5rem; transition: color .2s; }
+.footer-col a:hover { color: var(--primary); }
+.footer-col p { font-size: .875rem; color: var(--muted-fg); margin-bottom: .4rem; }
+.footer-newsletter { display: flex; gap: .5rem; }
+.footer-newsletter input {
+  flex: 1; background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: .5rem .75rem;
+  color: var(--fg); font-size: .875rem; outline: none;
+  transition: border-color .2s;
+}
+.footer-newsletter input:focus { border-color: var(--primary); }
+.footer-newsletter input::placeholder { color: var(--muted-fg); }
+.footer-social { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.footer-social a { color: var(--muted-fg); transition: color .2s; }
+.footer-social a:hover { color: var(--primary); }
+.footer-social svg { width: 20px; height: 20px; stroke: currentColor; }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: .875rem; color: var(--muted-fg);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+  background: var(--card); border: 1px solid var(--primary);
+  border-radius: var(--radius); padding: .875rem 1.25rem;
+  font-size: .875rem; color: var(--fg);
+  display: flex; align-items: center; gap: .75rem;
+  animation: slideIn .3s ease, slideOut .3s ease 2.7s both;
+  box-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+.toast svg { width: 18px; height: 18px; color: var(--primary); stroke: var(--primary); flex-shrink: 0; }
+@keyframes slideIn { from{transform:translateX(100%);opacity:0} to{transform:none;opacity:1} }
+@keyframes slideOut { from{opacity:1;transform:none} to{opacity:0;transform:translateX(100%)} }
+
+/* Fade-in animation utility */
+.fade-in-view { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in-view.visible { opacity: 1; transform: none; }
+
+/* Section animations with delay */
+.delay-1 { transition-delay: .1s; }
+.delay-2 { transition-delay: .2s; }
+.delay-3 { transition-delay: .3s; }
+
+/* ── RICH DETAIL SECTIONS ── */
+.detail-section { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+.detail-section-label {
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--primary); margin-bottom: .35rem;
+}
+.detail-section-title { font-size: 1.6rem; margin-bottom: 1.5rem; }
+
+/* Benefits grid */
+.rich-benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media(max-width:540px){ .rich-benefits-grid { grid-template-columns: 1fr; } }
+.rich-benefit-card {
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius); padding: 1.1rem 1.25rem;
+  transition: background .2s, border-color .2s;
+}
+.rich-benefit-card:hover { background: rgba(77,255,0,.04); }
+.rich-benefit-title { font-weight: 600; font-size: .9rem; color: var(--fg); margin-bottom: .3rem; }
+.rich-benefit-desc { font-size: .82rem; color: var(--muted-fg); line-height: 1.6; }
+
+/* Ingredients table */
+.ingredients-table { display: flex; flex-direction: column; gap: .5rem; }
+.ingredient-row {
+  display: grid; grid-template-columns: 180px 1fr 60px;
+  gap: 1rem; align-items: center;
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+  transition: border-color .2s;
+}
+.ingredient-row:hover { border-color: rgba(77,255,0,.4); }
+@media(max-width:600px){ .ingredient-row { grid-template-columns: 1fr; gap: .3rem; } }
+.ingredient-name { font-weight: 600; font-size: .875rem; color: var(--fg); }
+.ingredient-desc { font-size: .82rem; color: var(--muted-fg); }
+.ingredient-dose { font-weight: 700; font-size: .95rem; color: var(--primary); text-align: right; white-space: nowrap; }
+
+/* Dosage cards */
+.dosage-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media(max-width:540px){ .dosage-cards { grid-template-columns: 1fr; } }
+.dosage-card {
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem; text-align: center;
+  transition: border-color .2s;
+}
+.dosage-card:hover { border-color: rgba(77,255,0,.4); }
+.dosage-icon { font-size: 1.75rem; margin-bottom: .6rem; }
+.dosage-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-fg); margin-bottom: .35rem; }
+.dosage-value { font-weight: 600; font-size: .9rem; color: var(--fg); }
+
+/* Ideal for */
+.ideal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+@media(max-width:480px){ .ideal-grid { grid-template-columns: 1fr; } }
+.ideal-item {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: .85rem 1rem;
+  font-size: .875rem; color: var(--muted-fg);
+}
+.ideal-item svg { flex-shrink: 0; color: var(--primary); stroke: var(--primary); }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: .4rem; }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color .2s; }
+.faq-item.open { border-color: rgba(77,255,0,.4); }
+.faq-question {
+  width: 100%; background: var(--muted-bg); border: none; cursor: pointer;
+  color: var(--fg); text-align: left;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: .9rem;
+  padding: 1rem 1.25rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  transition: color .2s;
+}
+.faq-question:hover { color: var(--primary); }
+.faq-arrow { flex-shrink: 0; transition: transform .3s; color: var(--primary); stroke: var(--primary); }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-answer {
+  background: var(--card); color: var(--muted-fg); font-size: .875rem;
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s;
+  padding: 0 1.25rem;
+}
+.faq-item.open .faq-answer { max-height: 200px; padding: .875rem 1.25rem; }
+
+/* Rich reviews */
+.rich-reviews-summary {
+  display: flex; align-items: center; gap: 1.5rem;
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.rich-score { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--fg); line-height: 1; }
+.rich-reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media(max-width:700px){ .rich-reviews-grid { grid-template-columns: 1fr; } }
+.rich-review-card {
+  background: var(--muted-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem;
+  transition: border-color .2s;
+}
+.rich-review-card:hover { border-color: rgba(77,255,0,.3); }
+.rich-review-text { font-size: .875rem; color: var(--fg); font-style: italic; margin: .6rem 0; line-height: 1.6; }
+.rich-review-author { font-size: .8rem; font-weight: 600; color: var(--fg); }
+.rich-review-meta { font-size: .73rem; color: var(--muted-fg); margin-top: .2rem; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:639px){
+  .why-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a class="navbar-logo" href="#" onclick="navigate('home')">MUSCLE <span>JUNKIES</span></a>
+
+    <div class="navbar-links" id="navbar-links">
+      <a href="#" onclick="navigate('home')" data-page="home" class="active">Inicio</a>
+      <a href="#" onclick="navigate('tienda')" data-page="tienda">Tienda</a>
+      <a href="#" onclick="navigate('quiz')" data-page="quiz">Quiz</a>
+      <a href="#" onclick="navigate('comunidad')" data-page="comunidad">Comunidad</a>
+      <a href="#" onclick="navigate('blog')" data-page="blog">Blog</a>
+      <a href="#" onclick="navigate('contacto')" data-page="contacto">Contacto</a>
+    </div>
+
+    <div class="navbar-right">
+      <button class="cart-btn" onclick="navigate('carrito')" aria-label="Carrito">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="menu-btn" onclick="toggleMobile()" aria-label="Menú">
+        <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="menu-icon-close" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="navigate('home');closeMobile()">Inicio</a>
+  <a href="#" onclick="navigate('tienda');closeMobile()">Tienda</a>
+  <a href="#" onclick="navigate('quiz');closeMobile()">Quiz</a>
+  <a href="#" onclick="navigate('comunidad');closeMobile()">Comunidad</a>
+  <a href="#" onclick="navigate('blog');closeMobile()">Blog</a>
+  <a href="#" onclick="navigate('contacto');closeMobile()">Contacto</a>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <!-- Athletic dark gradient background -->
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,#051205 0%,#0a0a0a 50%,#0a0a0a 100%)"></div>
+      <!-- Subtle grid pattern overlay -->
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(77,255,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(77,255,0,.03) 1px,transparent 1px);background-size:60px 60px;"></div>
+      <!-- Right side glow -->
+      <div style="position:absolute;right:0;top:0;bottom:0;width:50%;background:radial-gradient(ellipse at 80% 50%,rgba(77,255,0,.07) 0%,transparent 70%)"></div>
+    </div>
+    <div class="hero-overlay" style="background:linear-gradient(to right,rgba(10,10,10,.95) 30%,rgba(10,10,10,.6) 70%,transparent)"></div>
+
+    <div class="container" style="position:relative;z-index:2;padding-top:2rem;padding-bottom:2rem;">
+      <div class="hero-content">
+        <h1>
+          POTENCIÁ TU <span class="text-primary neon-glow">RENDIMIENTO</span>
+        </h1>
+        <p>Suplementos premium para atletas reales. Desde General Pico para toda Argentina.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="navigate('tienda')">
+            Ver suplementos
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <button class="btn-outline" onclick="navigate('quiz')">
+            Hacer el test de suplementación
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section-py" style="background:var(--bg)">
+    <div class="container">
+      <div class="fade-in-view">
+        <h2 class="section-title">PRODUCTOS <span class="text-primary">DESTACADOS</span></h2>
+        <p class="section-sub">Lo que más eligen nuestros atletas</p>
+      </div>
+      <div class="products-grid" id="featured-grid"></div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="#" onclick="navigate('tienda')" class="text-primary" style="font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:.4rem;">
+          Ver todos los productos
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY MUSCLE JUNKIES -->
+  <section class="section-py" style="background:var(--card)">
+    <div class="container">
+      <h2 class="section-title fade-in-view">¿POR QUÉ <span class="text-primary">MUSCLE JUNKIES</span>?</h2>
+      <div style="height:3rem"></div>
+      <div class="why-grid">
+        <div class="why-card fade-in-view delay-1">
+          <div class="why-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Calidad Premium</h3>
+          <p>Ingredientes de primera calidad, testados en laboratorio. Sin rellenos innecesarios.</p>
+        </div>
+        <div class="why-card fade-in-view delay-2">
+          <div class="why-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Envíos a toda Argentina</h3>
+          <p>Envío gratis a partir de $200.000. Entrega rápida en todo el país.</p>
+        </div>
+        <div class="why-card fade-in-view delay-3">
+          <div class="why-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Comunidad Fitness</h3>
+          <p>Más que una marca, somos una comunidad de atletas y apasionados del fitness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community-section">
+    <div class="community-bg">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#051205,#0a180a,#0a0a0a)"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle at 30% 50%,rgba(77,255,0,.08) 0%,transparent 60%);"></div>
+    </div>
+    <div class="community-overlay" style="background:rgba(10,10,10,.6)"></div>
+    <div class="container community-content fade-in-view">
+      <h2>LA COMUNIDAD <span class="text-primary neon-glow">MUSCLE JUNKIES</span></h2>
+      <p>Somos atletas, somos dedicación, somos pasión. Unite a nuestra comunidad y potenciá tus resultados.</p>
+      <button class="btn-primary" onclick="navigate('comunidad')" style="margin:0 auto">
+        Conocé la comunidad
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- BLOG PREVIEW -->
+  <section class="section-py" style="background:var(--bg)">
+    <div class="container">
+      <h2 class="section-title fade-in-view">EDUCACIÓN <span class="text-primary">FITNESS</span></h2>
+      <div style="height:3rem"></div>
+      <div class="blog-grid">
+        <a href="#" onclick="navigate('blog')" class="blog-card fade-in-view delay-1">
+          <p class="blog-tag">ARTÍCULO</p>
+          <h3>¿Para qué sirve la creatina?</h3>
+          <p>Descubrí los beneficios científicamente comprobados de la creatina monohidrato.</p>
+          <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="#" onclick="navigate('blog')" class="blog-card fade-in-view delay-2">
+          <p class="blog-tag">ARTÍCULO</p>
+          <h3>¿Qué proteína elegir?</h3>
+          <p>Guía completa para elegir la proteína ideal según tus objetivos.</p>
+          <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+        <a href="#" onclick="navigate('blog')" class="blog-card fade-in-view delay-3">
+          <p class="blog-tag">ARTÍCULO</p>
+          <h3>Cómo empezar en el gimnasio</h3>
+          <p>Todo lo que necesitás saber para dar tus primeros pasos en el gym.</p>
+          <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div><!-- /page-home -->
+
+
+<!-- ══════════════════════════════════════════
+     TIENDA PAGE
+══════════════════════════════════════════ -->
+<div id="page-tienda" class="page">
+  <section style="padding:3rem 0 5rem">
+    <div class="container">
+      <div class="shop-header fade-in-view">
+        <h1>NUESTRA <span class="text-primary">TIENDA</span></h1>
+        <p class="text-muted" style="margin-top:.5rem">Suplementos premium para cada objetivo</p>
+      </div>
+      <div class="filter-row" id="filter-row"></div>
+      <div class="products-grid" id="shop-grid"></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PRODUCT DETAIL PAGE
+══════════════════════════════════════════ -->
+<div id="page-detail" class="page">
+  <div class="container" style="padding-top:2rem;padding-bottom:4rem">
+    <a href="#" class="detail-back" onclick="navigate('tienda')">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Volver a la tienda
+    </a>
+    <div id="product-detail-content"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     QUIZ PAGE
+══════════════════════════════════════════ -->
+<div id="page-quiz" class="page">
+  <div class="quiz-wrap">
+    <div id="quiz-content"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     COMUNIDAD PAGE
+══════════════════════════════════════════ -->
+<div id="page-comunidad" class="page">
+  <div class="container" style="padding:4rem 1rem">
+    <div style="text-align:center;max-width:680px;margin:0 auto">
+      <h1 class="fade-in-view" style="font-size:clamp(2.5rem,6vw,5rem);margin-bottom:1rem">LA COMUNIDAD <span class="text-primary neon-glow">MJ</span></h1>
+      <p class="fade-in-view text-muted" style="margin-bottom:3rem;font-size:1.05rem">Somos más de 15.000 atletas argentinos que entrenamos, aprendemos y crecemos juntos. Unite al movimiento.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-bottom:4rem">
+      <div class="why-card fade-in-view delay-1">
+        <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <h3>Instagram</h3>
+        <p>Seguinos en @musclejunkies.ar y viví el día a día de la comunidad.</p>
+      </div>
+      <div class="why-card fade-in-view delay-2">
+        <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Comunidad WhatsApp</h3>
+        <p>Unite a nuestro grupo y conectá con atletas de todo el país.</p>
+      </div>
+      <div class="why-card fade-in-view delay-3">
+        <div class="why-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Programa de Embajadores</h3>
+        <p>¿Sos referente en tu gym? Sumate al programa y obtené beneficios exclusivos.</p>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;max-width:540px;margin:0 auto" class="fade-in-view">
+      <h2 style="font-size:2rem;margin-bottom:.75rem">UNITE A LA COMUNIDAD</h2>
+      <p class="text-muted" style="margin-bottom:1.5rem;font-size:.9rem">Dejá tu email y te sumamos a nuestra comunidad de atletas.</p>
+      <div style="display:flex;gap:.5rem">
+        <input type="email" placeholder="Tu email" style="flex:1;background:var(--muted-bg);border:1px solid var(--border);border-radius:var(--radius);padding:.6rem 1rem;color:var(--fg);font-size:.9rem;outline:none">
+        <button class="btn-primary">Unirme</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     BLOG PAGE
+══════════════════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div class="container" style="padding:3rem 1rem 5rem">
+    <h1 class="fade-in-view" style="font-size:clamp(2.5rem,6vw,5rem);text-align:center;margin-bottom:.75rem">EDUCACIÓN <span class="text-primary">FITNESS</span></h1>
+    <p class="text-muted fade-in-view" style="text-align:center;margin-bottom:3rem">Artículos, guías y consejos de nuestros especialistas</p>
+    <div class="blog-grid">
+      <a href="#" class="blog-card fade-in-view delay-1">
+        <p class="blog-tag">NUTRICIÓN</p>
+        <h3>¿Para qué sirve la creatina?</h3>
+        <p>Descubrí los beneficios científicamente comprobados de la creatina monohidrato y cómo incorporarla a tu rutina.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#" class="blog-card fade-in-view delay-2">
+        <p class="blog-tag">PROTEÍNAS</p>
+        <h3>¿Qué proteína elegir?</h3>
+        <p>Whey concentrate, isolate o caseína: guía completa para elegir la proteína ideal según tus objetivos.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#" class="blog-card fade-in-view delay-3">
+        <p class="blog-tag">PRINCIPIANTES</p>
+        <h3>Cómo empezar en el gimnasio</h3>
+        <p>Todo lo que necesitás saber para dar tus primeros pasos en el gym, sin errores y con resultados reales.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#" class="blog-card fade-in-view delay-1">
+        <p class="blog-tag">SUPLEMENTACIÓN</p>
+        <h3>El mejor momento para tomar proteína</h3>
+        <p>¿Antes o después de entrenar? Analizamos la evidencia científica para maximizar tus resultados.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#" class="blog-card fade-in-view delay-2">
+        <p class="blog-tag">ENTRENAMIENTO</p>
+        <h3>BCAA: ¿los necesitás realmente?</h3>
+        <p>Analizamos qué dicen los estudios sobre los aminoácidos de cadena ramificada y cuándo tienen sentido.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+      <a href="#" class="blog-card fade-in-view delay-3">
+        <p class="blog-tag">NUTRICIÓN</p>
+        <h3>Cómo calcular tus macros</h3>
+        <p>Proteínas, carbohidratos y grasas: aprende a calcular cuánto necesitás según tu peso, objetivo y actividad.</p>
+        <span class="blog-read-more">Leer más <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACTO PAGE
+══════════════════════════════════════════ -->
+<div id="page-contacto" class="page">
+  <div class="container" style="padding:3rem 1rem 5rem;max-width:700px">
+    <h1 class="fade-in-view" style="font-size:clamp(2.5rem,6vw,4rem);margin-bottom:.75rem">CONTACTO</h1>
+    <p class="text-muted fade-in-view" style="margin-bottom:3rem">¿Tenés alguna consulta? Estamos para ayudarte.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-bottom:3rem">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;align-items:flex-start;gap:.75rem" class="fade-in-view delay-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div style="font-weight:600;margin-bottom:.25rem;font-size:.9rem">Ubicación</div><p class="text-muted" style="font-size:.85rem">General Pico, La Pampa, Argentina</p></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;align-items:flex-start;gap:.75rem" class="fade-in-view delay-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.85 19.79 19.79 0 0 1 1.58 5.22a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.7a16 16 0 0 0 6 6l.93-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 18z"/></svg>
+        <div><div style="font-weight:600;margin-bottom:.25rem;font-size:.9rem">WhatsApp</div><p class="text-muted" style="font-size:.85rem">+54 9 2302 000000</p></div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;align-items:flex-start;gap:.75rem" class="fade-in-view delay-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div><div style="font-weight:600;margin-bottom:.25rem;font-size:.9rem">Email</div><p class="text-muted" style="font-size:.85rem">info@musclejunkies.com.ar</p></div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem" class="fade-in-view">
+      <h2 style="font-size:1.75rem;margin-bottom:1.5rem">ENVIANOS UN MENSAJE</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <input type="text" placeholder="Tu nombre" style="background:var(--muted-bg);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1rem;color:var(--fg);font-size:.9rem;outline:none;width:100%">
+        <input type="email" placeholder="Tu email" style="background:var(--muted-bg);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1rem;color:var(--fg);font-size:.9rem;outline:none;width:100%">
+        <textarea placeholder="Tu mensaje..." rows="4" style="background:var(--muted-bg);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1rem;color:var(--fg);font-size:.9rem;outline:none;width:100%;resize:vertical"></textarea>
+        <button class="btn-primary" style="width:100%;justify-content:center">Enviar mensaje</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     CART PAGE
+══════════════════════════════════════════ -->
+<div id="page-carrito" class="page">
+  <div class="container" style="padding:2rem 1rem 5rem">
+    <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2rem">MI <span class="text-primary">CARRITO</span></h1>
+    <div id="cart-content"></div>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>MUSCLE <span class="text-primary">JUNKIES</span></h3>
+        <p style="font-size:.875rem;color:var(--muted-fg);line-height:1.7">Suplementos premium para atletas reales. Desde General Pico, La Pampa, para toda Argentina.</p>
+      </div>
+      <div class="footer-col">
+        <h4>ENLACES</h4>
+        <a href="#" onclick="navigate('tienda')">Tienda</a>
+        <a href="#" onclick="navigate('quiz')">Quiz de Suplementación</a>
+        <a href="#" onclick="navigate('blog')">Blog</a>
+        <a href="#" onclick="navigate('comunidad')">Comunidad</a>
+        <a href="#" onclick="navigate('contacto')">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>ENVÍOS</h4>
+        <p>📦 Envío gratis a partir de $200.000</p>
+        <p>🚚 Envíos a toda Argentina</p>
+        <p>⚡ Entrega en 24-72hs (General Pico)</p>
+        <p>🏠 Retiro en General Pico sin cargo</p>
+      </div>
+      <div class="footer-col">
+        <h4>NEWSLETTER</h4>
+        <p style="margin-bottom:.75rem">Recibí ofertas exclusivas y tips de entrenamiento.</p>
+        <div class="footer-newsletter">
+          <input type="email" placeholder="Tu email" id="footer-email">
+          <button class="btn-primary" style="padding:.5rem 1rem">OK</button>
+        </div>
+        <div class="footer-social">
+          <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/5492302000000" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.85 19.79 19.79 0 0 1 1.58 5.22a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.7a16 16 0 0 0 6 6l.93-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 18z"/></svg>
+          </a>
+          <a href="mailto:info@musclejunkies.com.ar" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <span style="color:var(--muted-fg);font-size:.8rem;display:flex;align-items:center;gap:.25rem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            General Pico, La Pampa
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Muscle Junkies. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+const products = [
+  {
+    id: "1", slug: "whey-protein", name: "Whey Protein Concentrate", category: "Proteínas",
+    price: 18990, originalPrice: 22000, rating: 4.8, reviews: 124, featured: true,
+    description: "Proteína de suero de leche de alta calidad con 24g de proteína por porción. Ideal para la recuperación muscular y el crecimiento. Sin rellenos innecesarios, con perfil de aminoácidos completo.",
+    benefits: ["24g de proteína por porción","Bajo en grasas y carbohidratos","Rápida absorción post-entrenamiento","Disponible en múltiples sabores","Con enzimas digestivas para mejor absorción"],
+    flavors: ["Chocolate","Vainilla","Frutilla","Sin sabor"],
+    supplementFacts: "Tamaño de porción: 1 scoop (30g). Porciones por envase: 30. Proteínas: 24g, Carbohidratos: 3g, Grasas: 1.5g, Sodio: 80mg.",
+    ingredients: [
+      { name: "Concentrado de Proteína Whey", dose: "24g", desc: "Fuente completa de proteína derivada del suero de leche. Alto en leucina para estimular la síntesis muscular." },
+      { name: "L-Glutamina", dose: "2g", desc: "Aminoácido condicional que apoya la recuperación y el sistema inmune en períodos de entrenamiento intenso." },
+      { name: "Complejo Enzimático", dose: "150mg", desc: "Bromelina + papaína para mejorar la digestión y absorción de proteína, reduciendo el malestar gastrointestinal." },
+      { name: "Saborizante Natural", dose: "—", desc: "Endulzado con sucralosa en dosis mínimas. Sin sacarina ni ciclamato." }
+    ],
+    dosage: { amount: "1 scoop (30g)", when: "Post-entrenamiento o entre comidas", how: "Mezclar con 250ml de agua o leche" },
+    idealFor: ["Personas que entrenan fuerza o musculación","Deportistas que buscan mejorar su recuperación","Quienes quieren aumentar su ingesta diaria de proteína","Principiantes que empiezan a suplementarse"],
+    faq: [
+      { q: "¿Puedo tomarlo todos los días?", a: "Sí, totalmente. La proteína whey es un alimento, no un medicamento. Podés usarla a diario para cubrir tus requerimientos proteicos." },
+      { q: "¿Tiene efectos secundarios?", a: "En personas sanas, no. Si tenés intolerancia a la lactosa, puede causar algo de malestar digestivo. En ese caso consultá con tu médico." },
+      { q: "¿Es apta para principiantes?", a: "Absolutamente. Es uno de los primeros suplementos que recomendamos para quien recién empieza." },
+      { q: "¿Se puede combinar con creatina?", a: "Sí, Whey + Creatina es el stack más popular y estudiado del mundo del fitness." },
+      { q: "¿Cuánto tarda en notarse el efecto?", a: "La recuperación mejorada se nota desde la primera semana. Los cambios en composición corporal son visibles entre las 4-8 semanas." }
+    ],
+    customerReviews: [
+      { name: "Juan M.", city: "Buenos Aires", rating: 5, text: "Excelente proteína, se mezcla perfectamente y el sabor a chocolate es increíble. Después de 2 meses noté una diferencia real en recuperación.", date: "hace 2 semanas" },
+      { name: "Valentina R.", city: "Córdoba", rating: 5, text: "Llevo 6 meses usándola y no cambio. El precio es muy bueno para la calidad que tiene.", date: "hace 1 mes" },
+      { name: "Marcos L.", city: "Rosario", rating: 4, text: "Buenísima relación calidad-precio. El envío fue rápido. El sabor vainilla podría ser un poco más intenso.", date: "hace 3 semanas" }
+    ],
+    relatedIds: ["2","4","3"],
+    image: null
+  },
+  {
+    id: "2", slug: "creatina-monohidrato", name: "Creatina Monohidratada", category: "Creatina",
+    price: 12490, originalPrice: null, rating: 5.0, reviews: 89, featured: true,
+    description: "Creatina monohidratada micronizada de grado farmacéutico. El suplemento más estudiado y respaldado por la ciencia para aumentar fuerza, potencia y rendimiento.",
+    benefits: ["Aumenta la fuerza hasta un 15%","Mejora la potencia explosiva","Acelera la recuperación entre series","100% creatina pura, sin aditivos","Micronizada para mejor solubilidad"],
+    flavors: null,
+    supplementFacts: "Tamaño de porción: 1 scoop (5g). Creatina Monohidratada: 5g.",
+    ingredients: [
+      { name: "Creatina Monohidratada Micronizada", dose: "5g", desc: "Forma pura de creatina con partículas de menor tamaño para mayor solubilidad y absorción. Pureza ≥99.9%, sin rellenos." }
+    ],
+    dosage: { amount: "3–5g por día", when: "Post-entrenamiento o en cualquier momento del día", how: "Disolver en 200ml de agua o jugo" },
+    idealFor: ["Atletas de fuerza y powerlifters","Deportes explosivos y de velocidad","Personas que buscan romper mesetas","Principiantes y avanzados por igual"],
+    faq: [
+      { q: "¿Necesito hacer carga de creatina?", a: "No es necesario. La carga acelera la saturación, pero tomar 5g diarios produce los mismos resultados en 3-4 semanas." },
+      { q: "¿Hay que ciclarla?", a: "No. La evidencia actual no respalda la necesidad de hacer ciclos. Podés tomarla continuamente sin problema." },
+      { q: "¿Daña los riñones?", a: "Esto es un mito. En personas sanas, la creatina a dosis normales es completamente segura. Si tenés condiciones renales, consultá a tu médico." },
+      { q: "¿Cuándo se notan los resultados?", a: "La mayoría nota mayor energía y rendimiento entre la 2da y 4ta semana, cuando los músculos están saturados." },
+      { q: "¿Se puede tomar con proteína?", a: "Sí, es la combinación más recomendada. Mezclar creatina directamente en el batido de proteína es totalmente válido." }
+    ],
+    customerReviews: [
+      { name: "Lucas R.", city: "Mendoza", rating: 5, text: "Desde que empecé con creatina mejoré mucho en sentadilla. En el primer mes agregué 10kg a mi máximo.", date: "hace 1 mes" },
+      { name: "Sofía T.", city: "La Plata", rating: 5, text: "Se disuelve muy bien, sin grumos y sin sabor. La mezclo directamente en mi batido de proteína. Muy pura.", date: "hace 2 semanas" },
+      { name: "Agustín P.", city: "CABA", rating: 5, text: "Llevo 3 meses y los resultados hablan solos. La recuperación entre series mejoró notablemente.", date: "hace 3 semanas" }
+    ],
+    relatedIds: ["1","3","4"],
+    image: null
+  },
+  {
+    id: "3", slug: "pre-workout-extreme", name: "Pre-Workout Extreme", category: "Pre-Workout",
+    price: 15990, originalPrice: 18500, rating: 4.7, reviews: 67, featured: true,
+    description: "Fórmula avanzada con cafeína, citrulina malato y beta-alanina. Energía explosiva, foco extremo y pump muscular sin igual para llevar tus entrenamientos al siguiente nivel.",
+    benefits: ["200mg de cafeína anhidra","6g de citrulina malato para máximo pump","3.2g de beta-alanina para resistencia","Sin crash post-entrenamiento","Fórmula transparente, sin propietarios"],
+    flavors: ["Sandía","Uva","Tropical","Limón"],
+    supplementFacts: "Tamaño de porción: 1 scoop (12g). Cafeína: 200mg, Citrulina Malato: 6g, Beta-Alanina: 3.2g, Taurina: 1g.",
+    ingredients: [
+      { name: "Citrulina Malato 2:1", dose: "6g", desc: "Precursor del óxido nítrico. Aumenta el flujo sanguíneo, mejora el pump muscular y acelera la eliminación de subproductos de fatiga." },
+      { name: "Beta-Alanina", dose: "3.2g", desc: "Aumenta la carnosina muscular actuando como buffer de acidez. Retrasa la fatiga y permite mayor volumen de trabajo." },
+      { name: "Cafeína Anhidra", dose: "200mg", desc: "Estimulante del sistema nervioso central que mejora el estado de alerta, la fuerza, la resistencia y la tolerancia al esfuerzo." },
+      { name: "L-Tirosina", dose: "1g", desc: "Precursor de dopamina y norepinefrina. Mejora el foco mental bajo estrés y potencia los efectos de la cafeína." },
+      { name: "Taurina", dose: "1g", desc: "Reduce el daño oxidativo muscular y contrarresta posibles efectos negativos de la cafeína en la presión arterial." }
+    ],
+    dosage: { amount: "1 scoop (12g)", when: "20–30 minutos antes de entrenar", how: "Mezclar en 250ml de agua fría. Empezar con media dosis para evaluar tolerancia." },
+    idealFor: ["Entrenamientos de alta intensidad","Días con baja energía o motivación","Atletas que buscan mayor volumen de trabajo","Entrenamientos funcionales o crossfit"],
+    faq: [
+      { q: "¿Por qué siento cosquilleo/picazón?", a: "Es el efecto de la beta-alanina, completamente normal e inofensivo. Se llama parestesia y desaparece en 15-20 minutos." },
+      { q: "¿Se genera tolerancia?", a: "Con el tiempo podés desarrollar tolerancia a la cafeína. Recomendamos 1-2 días de descanso por semana para mantener la sensibilidad." },
+      { q: "¿Lo puedo tomar si soy principiante?", a: "Sí, pero empezá siempre con media dosis para evaluar cómo responde tu cuerpo." },
+      { q: "¿A qué hora debo tomarlo?", a: "No recomendamos tomarlo después de las 16hs si sos sensible a la cafeína, para no afectar el sueño." },
+      { q: "¿Se puede combinar con creatina?", a: "Sí, es una de las combinaciones más populares y efectivas para maximizar el rendimiento." }
+    ],
+    customerReviews: [
+      { name: "Diego F.", city: "GBA", rating: 5, text: "El mejor pre-workout que probé en Argentina. Pump increíble y la energía dura todo el entrenamiento sin crash.", date: "hace 1 semana" },
+      { name: "Camila V.", city: "Salta", rating: 5, text: "Lo tomo antes de cada sesión de crossfit y la diferencia en rendimiento es notable.", date: "hace 2 meses" },
+      { name: "Nicolás B.", city: "Tucumán", rating: 4, text: "Muy buen producto. El sabor sandía es delicioso. Le faltaría algo más de cafeína para mis estándares.", date: "hace 3 semanas" }
+    ],
+    relatedIds: ["2","1","4"],
+    image: null
+  },
+  {
+    id: "4", slug: "bcaa-recovery", name: "BCAA Recovery 2:1:1", category: "Aminoácidos",
+    price: 13490, originalPrice: null, rating: 4.6, reviews: 45, featured: true,
+    description: "Aminoácidos de cadena ramificada en proporción 2:1:1 con electrolitos. Protegen el músculo durante el entrenamiento, reducen el DOMS y aceleran la recuperación.",
+    benefits: ["Proporción 2:1:1 respaldada por la ciencia","Con electrolitos para hidratación","Reduce el daño muscular y el DOMS","Ideal para consumo intra-entrenamiento","Sin azúcar agregada"],
+    flavors: ["Frutos del bosque","Naranja","Limón"],
+    supplementFacts: "Tamaño de porción: 1 scoop (10g). L-Leucina: 2.5g, L-Isoleucina: 1.25g, L-Valina: 1.25g.",
+    ingredients: [
+      { name: "L-Leucina", dose: "2.5g", desc: "Aminoácido clave para activar mTOR y estimular la síntesis proteica. Principal activador del crecimiento muscular entre los BCAA." },
+      { name: "L-Isoleucina", dose: "1.25g", desc: "Mejora la absorción de glucosa muscular, ayuda a regular la glucemia y contribuye a la energía durante el ejercicio." },
+      { name: "L-Valina", dose: "1.25g", desc: "Contribuye al equilibrio de nitrógeno muscular y apoya la reparación del tejido dañado post-entrenamiento." },
+      { name: "Vitamina B6 (P5P)", dose: "5mg", desc: "Coenzima esencial para el metabolismo de aminoácidos que potencia la absorción y utilización de los BCAA." }
+    ],
+    dosage: { amount: "1–2 scoops (10–20g)", when: "Durante o post-entrenamiento", how: "Disolver en 400–500ml de agua fría" },
+    idealFor: ["Personas en etapa de definición","Entrenamientos de alta frecuencia","Quienes buscan reducir el dolor muscular post-entreno","Deportistas con doble turno de entrenamiento"],
+    faq: [
+      { q: "¿Los BCAA son necesarios si ya tomo proteína?", a: "Si tu ingesta de proteína es suficiente, los BCAA son un complemento, no obligatorio. Son especialmente útiles en ayunas o entre comidas." },
+      { q: "¿Se pueden tomar antes de entrenar?", a: "Sí. Tomarlos pre o intra-entrenamiento también es válido, especialmente para proteger el músculo en sesiones largas." },
+      { q: "¿Tienen calorías?", a: "Muy pocas. Aportan aproximadamente 20–40kcal por porción dependiendo del saborizante, sin impacto significativo." },
+      { q: "¿Se pueden combinar con creatina?", a: "Perfectamente. Muchos atletas mezclan BCAA + creatina en la misma botella durante el entrenamiento." }
+    ],
+    customerReviews: [
+      { name: "Romina C.", city: "Córdoba", rating: 5, text: "Los tomo durante el entrenamiento y la diferencia en recuperación entre sesiones es notable. Mucho menos dolor al día siguiente.", date: "hace 2 semanas" },
+      { name: "Pablo M.", city: "CABA", rating: 5, text: "Ideal para cuando hago doble turno de entreno. Me ayuda a mantener el rendimiento en la segunda sesión.", date: "hace 1 mes" },
+      { name: "Marina G.", city: "Mar del Plata", rating: 5, text: "El sabor a frutos del bosque es delicioso. Se convirtió en parte fundamental de mi rutina.", date: "hace 1 semana" }
+    ],
+    relatedIds: ["1","2","7"],
+    image: null
+  },
+  {
+    id: "5", slug: "fat-burner-pro", name: "Fat Burner Pro", category: "Quemadores",
+    price: 16990, originalPrice: 19500, rating: 4.5, reviews: 38, featured: false,
+    description: "Termogénico avanzado con cafeína, L-carnitina y extracto de té verde. Acelera el metabolismo, aumenta la oxidación de grasas y mejora el enfoque mental.",
+    benefits: ["Acelera el metabolismo basal","Aumenta la oxidación de grasas","Con L-Carnitina 500mg por porción","Extracto de té verde estandarizado","Efecto termogénico sostenido"],
+    flavors: null,
+    supplementFacts: "Tamaño de porción: 2 cápsulas. Cafeína: 150mg, L-Carnitina: 500mg, Extracto de Té Verde: 300mg.",
+    ingredients: [
+      { name: "L-Carnitina L-Tartrato", dose: "500mg", desc: "Transporta ácidos grasos a las mitocondrias para ser oxidados como combustible. Apoya la definición y la recuperación." },
+      { name: "Extracto de Té Verde", dose: "300mg", desc: "Estandarizado al 50% de EGCG. Potente antioxidante con efecto termogénico que aumenta el gasto calórico basal." },
+      { name: "Cafeína Anhidra", dose: "150mg", desc: "Aumenta la termogénesis, mejora el enfoque y libera ácidos grasos para ser usados como energía." },
+      { name: "Pimienta Negra (BioPerine)", dose: "5mg", desc: "Aumenta la biodisponibilidad de los demás ingredientes hasta un 30%." }
+    ],
+    dosage: { amount: "2 cápsulas", when: "30 minutos antes del entrenamiento o desayuno", how: "Tomar con un vaso grande de agua. No exceder 4 cápsulas por día." },
+    idealFor: ["Personas en etapa de definición o pérdida de grasa","Atletas con cardio intenso","Quienes buscan mayor energía sin estimulantes en exceso","Personas con metabolismo lento"],
+    faq: [
+      { q: "¿Funciona sin hacer dieta?", a: "El termogénico potencia los efectos de una dieta con déficit calórico, pero no reemplaza una buena alimentación." },
+      { q: "¿Se puede tomar de noche?", a: "No recomendamos tomarlo después de las 14hs por su contenido de cafeína, para no interferir con el sueño." },
+      { q: "¿Hay que ciclar el Fat Burner?", a: "Recomendamos 8 semanas de uso y 2-4 semanas de descanso para evitar tolerancia a los estimulantes." },
+      { q: "¿Genera efecto rebote?", a: "No. No altera el metabolismo de forma permanente. El peso perdido se mantiene si se sostienen los hábitos." }
+    ],
+    customerReviews: [
+      { name: "Lucía M.", city: "Rosario", rating: 5, text: "En 6 semanas de definición lo usé junto con cardio y dieta. Los resultados fueron notablemente mejores.", date: "hace 3 semanas" },
+      { name: "Rodrigo P.", city: "Córdoba", rating: 4, text: "Me da buena energía para el cardio matutino. Se nota el efecto termogénico, sudo más en la misma sesión.", date: "hace 2 meses" },
+      { name: "Florencia A.", city: "CABA", rating: 5, text: "Sin ansiedad ni taquicardia. Para mí es el punto ideal entre efecto y tolerabilidad.", date: "hace 1 mes" }
+    ],
+    relatedIds: ["1","8","4"],
+    image: null
+  },
+  {
+    id: "6", slug: "mass-gainer", name: "Mass Gainer Hardcore", category: "Gainers",
+    price: 21990, originalPrice: null, rating: 4.4, reviews: 29, featured: false,
+    description: "Hipercalórico premium con 600kcal por porción, 30g de proteína y carbohidratos de calidad. Ideal para hard gainers que buscan ganar masa muscular limpia.",
+    benefits: ["600kcal por porción en leche","30g de proteína de alta calidad","Carbohidratos complejos para energía","Con creatina y vitaminas incluidas","Sin azúcares simples"],
+    flavors: ["Chocolate","Vainilla"],
+    supplementFacts: "Tamaño de porción: 2 scoops (150g). Proteínas: 30g, Carbohidratos: 95g, Grasas: 5g, Calorías: 600kcal.",
+    ingredients: [
+      { name: "Blend de Proteína (Whey + Caseína)", dose: "30g", desc: "Combina la absorción rápida del whey con la liberación sostenida de la caseína para un aporte proteico prolongado." },
+      { name: "Maltodextrina + Avena", dose: "90g", desc: "Carbohidratos de rápida y media absorción para reponer glucógeno muscular y sostener el superávit calórico." },
+      { name: "Creatina Monohidratada", dose: "3g", desc: "Incluida en la fórmula para potenciar la fuerza y el volumen celular sin necesidad de otro suplemento extra." },
+      { name: "Complejo Vitamínico B + Zinc + Magnesio", dose: "—", desc: "Apoya el metabolismo proteico, la función hormonal y la recuperación general en fases de volumen." }
+    ],
+    dosage: { amount: "2 scoops (150g)", when: "Post-entrenamiento o entre comidas principales", how: "Mezclar con 400–500ml de leche entera para máximas calorías" },
+    idealFor: ["Hard gainers con metabolismo muy acelerado","Personas con poco tiempo para comer","Atletas en etapa de volumen limpio","Quienes buscan subir de peso de forma controlada"],
+    faq: [
+      { q: "¿Para quién es el gainer?", a: "Principalmente para personas que tienen dificultad para subir de peso o que no pueden cubrir sus calorías solo con comida." },
+      { q: "¿Puedo usarlo si no soy hard gainer?", a: "Si tendés a ganar grasa fácilmente, mejor optá por la proteína whey sola y ajustá las calorías desde la dieta." },
+      { q: "¿Genera grasa corporal?", a: "Cualquier exceso calórico puede generar grasa. La clave es usarlo como parte de un plan nutricional con superávit controlado." },
+      { q: "¿Cuántas veces al día puedo tomarlo?", a: "Con 1-2 porciones al día es más que suficiente para la mayoría de las personas. No es necesario más." }
+    ],
+    customerReviews: [
+      { name: "Ezequiel D.", city: "San Juan", rating: 5, text: "Soy de los que no pueden ganar peso con nada. En 2 meses de Mass Gainer subí 4kg y mis levantamientos mejoraron.", date: "hace 2 meses" },
+      { name: "Tomás R.", city: "Neuquén", rating: 5, text: "El sabor a chocolate con leche es increíble. Por fin un gainer que sabe rico y tiene buenos macros.", date: "hace 3 semanas" },
+      { name: "Florencia A.", city: "Rosario", rating: 4, text: "Muy buena fórmula y se digiere bien sin gases. Solo le faltaría más cantidad por pack.", date: "hace 1 mes" }
+    ],
+    relatedIds: ["2","1","3"],
+    image: null
+  },
+  {
+    id: "7", slug: "glutamina", name: "L-Glutamina", category: "Aminoácidos",
+    price: 9490, originalPrice: null, rating: 4.7, reviews: 52, featured: false,
+    description: "L-Glutamina de grado farmacéutico para recuperación muscular, salud intestinal y sistema inmune. Fundamental en períodos de entrenamiento intenso.",
+    benefits: ["Apoya la recuperación muscular","Fortalece el sistema inmune","Mejora la salud intestinal","100% pura, sin aditivos","Ideal para entrenamientos de alta frecuencia"],
+    flavors: null,
+    supplementFacts: "Tamaño de porción: 1 scoop (5g). L-Glutamina: 5g.",
+    ingredients: [
+      { name: "L-Glutamina Fermentada", dose: "5g", desc: "Aminoácido condicional esencial durante el entrenamiento intenso. Apoya la recuperación, la salud intestinal y el sistema inmune." }
+    ],
+    dosage: { amount: "5g (1 scoop)", when: "Post-entrenamiento o antes de dormir", how: "Disolver en agua, jugo o batido de proteína" },
+    idealFor: ["Atletas con alta frecuencia de entrenamiento","Personas con problemas digestivos","Quienes buscan reforzar el sistema inmune","Durante períodos de volumen o definición intensa"],
+    faq: [
+      { q: "¿La glutamina es necesaria si como bien?", a: "Durante entrenamientos muy intensos, el cuerpo puede necesitar más glutamina de la que sintetiza. El suplemento cubre esa demanda extra." },
+      { q: "¿Se puede tomar todos los días?", a: "Sí, es segura para uso diario y continuado. No requiere ciclos ni descansos." },
+      { q: "¿Tiene algún sabor?", a: "La glutamina pura tiene sabor neutro leve. Se puede mezclar con cualquier bebida sin alterar el sabor." }
+    ],
+    customerReviews: [
+      { name: "Carolina V.", city: "CABA", rating: 5, text: "Desde que la incorporé noto menos doms y el sistema digestivo funciona mucho mejor.", date: "hace 3 semanas" },
+      { name: "Martín S.", city: "Córdoba", rating: 5, text: "Producto de muy buena calidad. Se disuelve al instante y sin sabor. Clave en mi stack de recuperación.", date: "hace 2 meses" },
+      { name: "Andrea K.", city: "Rosario", rating: 4, text: "Muy buen producto. Lo combino con los BCAA post-entreno y la recuperación mejoró bastante.", date: "hace 1 mes" }
+    ],
+    relatedIds: ["4","1","2"],
+    image: null
+  },
+  {
+    id: "8", slug: "omega-3", name: "Omega 3 Fish Oil", category: "Salud",
+    price: 7990, originalPrice: null, rating: 4.8, reviews: 71, featured: false,
+    description: "Aceite de pescado de alta concentración con EPA y DHA. Reduce la inflamación, mejora la salud cardiovascular y apoya la recuperación muscular.",
+    benefits: ["Alta concentración EPA/DHA","Reduce la inflamación muscular","Apoya la salud cardiovascular","Cápsulas entéricas sin sabor a pescado","Certificado de pureza y metales pesados"],
+    flavors: null,
+    supplementFacts: "Tamaño de porción: 2 cápsulas. Aceite de Pescado: 2000mg (EPA 600mg, DHA 400mg).",
+    ingredients: [
+      { name: "EPA (Ácido Eicosapentaenoico)", dose: "600mg", desc: "Ácido graso omega-3 con potente efecto antiinflamatorio. Reduce el dolor muscular y apoya la salud cardiovascular." },
+      { name: "DHA (Ácido Docosahexaenoico)", dose: "400mg", desc: "Esencial para la función cerebral y la salud ocular. También contribuye a reducir los triglicéridos en sangre." },
+      { name: "Vitamina E (como Tocoferol)", dose: "5mg", desc: "Antioxidante natural que protege los ácidos grasos de la oxidación, garantizando la frescura del producto." }
+    ],
+    dosage: { amount: "2 cápsulas", when: "Con las comidas principales (almuerzo o cena)", how: "Tomar con un vaso de agua o leche. Las cápsulas entéricas evitan el sabor a pescado." },
+    idealFor: ["Atletas que buscan reducir la inflamación","Personas con dieta baja en pescado","Quienes cuidan su salud cardiovascular","Deportistas en recuperación de lesiones"],
+    faq: [
+      { q: "¿Se repite el sabor a pescado?", a: "No. Nuestras cápsulas tienen recubrimiento entérico que retrasa la liberación hasta el intestino, evitando el sabor y el reflujo." },
+      { q: "¿Cuánto tiempo hay que tomarlo?", a: "Para notar beneficios en inflamación y salud cardiovascular se recomienda un mínimo de 8-12 semanas de uso continuo." },
+      { q: "¿Puedo tomarlo con otros suplementos?", a: "Sí, el omega-3 es compatible con todos los suplementos deportivos. No presenta interacciones conocidas a dosis normales." }
+    ],
+    customerReviews: [
+      { name: "Jorge M.", city: "Buenos Aires", rating: 5, text: "Sin gusto a pescado para nada. Lo tomo con el almuerzo hace 4 meses y noté mejoría en las articulaciones.", date: "hace 1 mes" },
+      { name: "Daniela P.", city: "La Plata", rating: 5, text: "Excelente calidad. Vine de otra marca mucho más cara y este les gana en concentración de EPA/DHA.", date: "hace 3 semanas" },
+      { name: "Roberto C.", city: "Mendoza", rating: 5, text: "Ideal para complementar el stack de recuperación. Los precios son muy competitivos para la calidad que ofrecen.", date: "hace 2 meses" }
+    ],
+    relatedIds: ["5","4","7"],
+    image: null
+  }
+];
+
+const categories = [...new Set(products.map(p => p.category))];
+const featuredProducts = products.filter(p => p.featured);
+
+// ── CART STATE ──
+let cart = [];
+let currentPage = 'home';
+let currentProduct = null;
+
+// ── FORMAT PRICE ──
+const fmt = n => new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);
+
+// ── PRODUCT EMOJI MAP ──
+const productEmoji = {
+  "Proteínas": "🥛",
+  "Creatina": "⚡",
+  "Pre-Workout": "🔥",
+  "Aminoácidos": "🧬",
+  "Quemadores": "💊",
+  "Gainers": "🏋️",
+  "Salud": "🐟"
+};
+
+// ── RENDER STARS ──
+function renderStars(rating) {
+  let html = '<div class="stars">';
+  for(let i=0;i<5;i++){
+    const filled = i < Math.floor(rating);
+    html += `<svg class="star ${filled?'star-fill':'star-empty'}" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+// ── RENDER PRODUCT CARD ──
+function renderProductCard(p, index=0) {
+  const emoji = productEmoji[p.category] || '💊';
+  return `
+  <div class="product-card" style="animation-delay:${index*0.08}s" onclick="showDetail('${p.slug}')">
+    <div class="product-card-img">
+      ${p.originalPrice ? '<span class="tag-offer">OFERTA</span>' : ''}
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--muted-bg);font-size:5rem;position:relative">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,rgba(77,255,0,.08) 0%,transparent 70%)"></div>
+        <span style="position:relative;filter:drop-shadow(0 4px 16px rgba(0,0,0,.6))">${emoji}</span>
+      </div>
+    </div>
+    <div class="product-card-body">
+      <p class="product-card-cat">${p.category}</p>
+      <p class="product-card-name">${p.name}</p>
+      <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.5rem">
+        ${renderStars(p.rating)}
+        <span style="font-size:.75rem;color:var(--muted-fg)">(${p.reviews})</span>
+      </div>
+      <div class="product-card-footer">
+        <div>
+          <span class="product-card-price">${fmt(p.price)}</span>
+          ${p.originalPrice ? `<span class="product-card-old">${fmt(p.originalPrice)}</span>` : ''}
+        </div>
+        <button class="btn-icon" onclick="event.stopPropagation();addToCart(products.find(x=>x.id==='${p.id}'))" aria-label="Agregar al carrito">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── NAVIGATION ──
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if(el) el.classList.add('active');
+  currentPage = page;
+
+  // Update nav active states
+  document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
+  const navEl = document.querySelector(`[data-page="${page}"]`);
+  if(navEl) navEl.classList.add('active');
+
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  // Render page content
+  if(page === 'tienda') renderShop();
+  if(page === 'carrito') renderCart();
+  if(page === 'quiz') renderQuiz();
+  if(page === 'home') renderFeatured();
+
+  // Trigger animations
+  setTimeout(triggerFadeIn, 80);
+  return false;
+}
+
+// ── RENDER FEATURED ──
+function renderFeatured() {
+  const g = document.getElementById('featured-grid');
+  if(g) g.innerHTML = featuredProducts.map((p,i) => renderProductCard(p,i)).join('');
+}
+
+// ── RENDER SHOP ──
+let activeCategory = null;
+function renderShop(cat) {
+  if(cat !== undefined) activeCategory = cat;
+  const filtered = activeCategory ? products.filter(p => p.category === activeCategory) : products;
+
+  // Filters
+  const fr = document.getElementById('filter-row');
+  if(fr) {
+    fr.innerHTML = `<button class="filter-btn ${!activeCategory?'active':'inactive'}" onclick="renderShop(null)">Todos</button>` +
+      categories.map(c => `<button class="filter-btn ${activeCategory===c?'active':'inactive'}" onclick="renderShop('${c}')">${c}</button>`).join('');
+  }
+
+  // Grid
+  const sg = document.getElementById('shop-grid');
+  if(sg) {
+    if(filtered.length === 0) {
+      sg.innerHTML = '<p style="text-align:center;color:var(--muted-fg);padding:3rem 0">No hay productos en esta categoría.</p>';
+    } else {
+      sg.innerHTML = filtered.map((p,i) => renderProductCard(p,i)).join('');
+    }
+  }
+}
+
+// ── SHOW DETAIL ──
+let selectedFlavor = null;
+function showDetail(slug) {
+  const p = products.find(x => x.slug === slug);
+  if(!p) return;
+  currentProduct = p;
+  selectedFlavor = null;
+
+  const emoji = productEmoji[p.category] || '💊';
+  const related = p.relatedIds
+    ? p.relatedIds.map(id => products.find(x => x.id === id)).filter(Boolean).slice(0,4)
+    : products.filter(x => x.category === p.category && x.id !== p.id).slice(0,4);
+
+  // ── helpers ──
+  const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  const arrowDown = `<svg class="faq-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+
+  // ── benefits detail: map short benefit text to richer icon+desc ──
+  const benefitDetails = {
+    "24g de proteína por porción": { icon: "💪", desc: "Cubre una parte importante de tus requerimientos diarios de proteína en un solo batido." },
+    "Bajo en grasas y carbohidratos": { icon: "📊", desc: "Perfil nutricional limpio para no comprometer tu dieta, sea en volumen o en definición." },
+    "Rápida absorción post-entrenamiento": { icon: "⚡", desc: "La ventana anabólica post-entrenamiento es clave — el whey llega al músculo cuando más lo necesita." },
+    "Disponible en múltiples sabores": { icon: "🍫", desc: "Elegí el sabor que más te guste para mantener la constancia en tu rutina de suplementación." },
+    "Con enzimas digestivas para mejor absorción": { icon: "🔬", desc: "La bromelina y la papaína mejoran la digestibilidad, ideales para quienes son sensibles a la lactosa." },
+    "Aumenta la fuerza hasta un 15%": { icon: "🏋️", desc: "Estudios clínicos muestran mejoras significativas en fuerza máxima en los primeros 30 días de uso." },
+    "Mejora la potencia explosiva": { icon: "⚡", desc: "Mayor disponibilidad de fosfocreatina para esfuerzos cortos e intensos: sprints, saltos, series pesadas." },
+    "Acelera la recuperación entre series": { icon: "🔄", desc: "Resíntesis más rápida de fosfocreatina entre series para mantener la intensidad hasta la última repetición." },
+    "100% creatina pura, sin aditivos": { icon: "✅", desc: "Sin rellenos, sin azúcares, sin saborizantes innecesarios. Exactamente lo que pagás." },
+    "Micronizada para mejor solubilidad": { icon: "💧", desc: "Partículas más finas que se disuelven completamente en agua, sin grumitos ni sedimento." },
+    "200mg de cafeína anhidra": { icon: "☕", desc: "Dosis efectiva respaldada por la ciencia para mejorar el rendimiento sin generar dependencia severa." },
+    "6g de citrulina malato para máximo pump": { icon: "💉", desc: "Dosis clínica que aumenta el óxido nítrico y el flujo sanguíneo muscular para un pump extraordinario." },
+    "3.2g de beta-alanina para resistencia": { icon: "🛡️", desc: "Retrasa la acumulación de ácido láctico para que puedas hacer más repeticiones en cada serie." },
+    "Sin crash post-entrenamiento": { icon: "😴", desc: "Fórmula equilibrada que sostiene la energía sin el pico y caída brusca de los pre-workouts básicos." },
+    "Fórmula transparente, sin propietarios": { icon: "📋", desc: "Cada ingrediente declarado con su dosis exacta. Sabés exactamente qué tomás y en qué cantidad." },
+    "Proporción 2:1:1 respaldada por la ciencia": { icon: "🧬", desc: "La proporción con mayor evidencia para estimular la síntesis proteica y proteger el tejido muscular." },
+    "Con electrolitos para hidratación": { icon: "💧", desc: "Sodio y potasio incluidos para compensar las pérdidas por sudor durante entrenamientos intensos." },
+    "Reduce el daño muscular y el DOMS": { icon: "😌", desc: "Menor dolor muscular a las 24-48hs post-entrenamiento para que puedas entrenar con más frecuencia." },
+    "Ideal para consumo intra-entrenamiento": { icon: "⏱️", desc: "Tomalo en tu botella durante el entreno para mantener la síntesis proteica activa mientras trabajás." },
+    "Sin azúcar agregada": { icon: "🚫", desc: "Apto para quienes cuidan su ingesta de azúcar, tanto en volumen limpio como en definición." },
+  };
+
+  function renderBenefitCards(benefits) {
+    return `<div class="rich-benefits-grid">
+      ${benefits.map(b => {
+        const detail = benefitDetails[b] || { icon: "✅", desc: b };
+        return `<div class="rich-benefit-card">
+          <div style="font-size:1.4rem;margin-bottom:.4rem">${detail.icon}</div>
+          <div class="rich-benefit-title">${b}</div>
+          <div class="rich-benefit-desc">${detail.desc}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
+  const detailContent = document.getElementById('product-detail-content');
+  detailContent.innerHTML = `
+
+  <!-- TOP: imagen + info compra -->
+  <div class="detail-grid">
+    <div>
+      <div class="detail-img">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--muted-bg);font-size:8rem;position:relative">
+          <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 60%,rgba(77,255,0,.1) 0%,transparent 70%)"></div>
+          <span style="position:relative;filter:drop-shadow(0 8px 24px rgba(0,0,0,.6))">${emoji}</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="detail-cat">${p.category}</p>
+      <h1 class="detail-name">${p.name}</h1>
+      <div class="detail-stars-row">
+        ${renderStars(p.rating)}
+        <span>${p.rating} (${p.reviews} reseñas)</span>
+      </div>
+      <div style="margin-bottom:1.5rem">
+        <span class="detail-price">${fmt(p.price)}</span>
+        ${p.originalPrice ? `<span class="detail-old-price">${fmt(p.originalPrice)}</span>` : ''}
+      </div>
+      <p class="detail-desc">${p.description}</p>
+      ${p.flavors ? `
+      <div class="flavor-row">
+        <p class="flavor-label">Sabor:</p>
+        <div class="flavor-btns" id="flavor-btns">
+          ${p.flavors.map(f => `<button class="flavor-btn" onclick="selectFlavor('${f}')">${f}</button>`).join('')}
+        </div>
+      </div>` : ''}
+      <button class="detail-add-btn" onclick="addToCart(products.find(x=>x.slug==='${p.slug}'), selectedFlavor)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Agregar al carrito
+      </button>
+      <!-- Trust badges -->
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem">
+        <span style="display:inline-flex;align-items:center;gap:.3rem;background:var(--muted-bg);border:1px solid var(--border);border-radius:.25rem;padding:.3rem .65rem;font-size:.72rem;font-weight:600;color:var(--muted-fg)">
+          ${checkIcon} Calidad Premium
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:.3rem;background:var(--muted-bg);border:1px solid var(--border);border-radius:.25rem;padding:.3rem .65rem;font-size:.72rem;font-weight:600;color:var(--muted-fg)">
+          ${checkIcon} Fórmula Testeada
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:.3rem;background:var(--muted-bg);border:1px solid var(--border);border-radius:.25rem;padding:.3rem .65rem;font-size:.72rem;font-weight:600;color:var(--muted-fg)">
+          🚚 Envíos a todo el país
+        </span>
+      </div>
+      ${p.supplementFacts ? `
+      <div class="detail-box" style="margin-top:1.25rem">
+        <h3>INFORMACIÓN NUTRICIONAL</h3>
+        <p style="font-size:.875rem;color:var(--muted-fg)">${p.supplementFacts}</p>
+      </div>` : ''}
+    </div>
+  </div>
+
+  <!-- BENEFICIOS -->
+  <div class="detail-section">
+    <p class="detail-section-label">Lo que vas a lograr</p>
+    <h2 class="detail-section-title">BENEFICIOS PRINCIPALES</h2>
+    ${renderBenefitCards(p.benefits)}
+  </div>
+
+  <!-- INGREDIENTES -->
+  ${p.ingredients ? `
+  <div class="detail-section">
+    <p class="detail-section-label">Qué contiene</p>
+    <h2 class="detail-section-title">INGREDIENTES Y FÓRMULA</h2>
+    <div class="ingredients-table">
+      ${p.ingredients.map(ing => `
+      <div class="ingredient-row">
+        <div class="ingredient-name">${ing.name}</div>
+        <div class="ingredient-desc">${ing.desc}</div>
+        <div class="ingredient-dose">${ing.dose}</div>
+      </div>`).join('')}
+    </div>
+  </div>` : ''}
+
+  <!-- CÓMO TOMARLO -->
+  ${p.dosage ? `
+  <div class="detail-section">
+    <p class="detail-section-label">Guía de uso</p>
+    <h2 class="detail-section-title">CÓMO Y CUÁNDO TOMARLO</h2>
+    <div class="dosage-cards">
+      <div class="dosage-card">
+        <div class="dosage-icon">⚖️</div>
+        <div class="dosage-label">Cantidad</div>
+        <div class="dosage-value">${p.dosage.amount}</div>
+      </div>
+      <div class="dosage-card">
+        <div class="dosage-icon">⏱️</div>
+        <div class="dosage-label">Cuándo</div>
+        <div class="dosage-value">${p.dosage.when}</div>
+      </div>
+      <div class="dosage-card">
+        <div class="dosage-icon">🥤</div>
+        <div class="dosage-label">Cómo</div>
+        <div class="dosage-value">${p.dosage.how}</div>
+      </div>
+    </div>
+  </div>` : ''}
+
+  <!-- IDEAL PARA -->
+  ${p.idealFor ? `
+  <div class="detail-section">
+    <p class="detail-section-label">¿Es para vos?</p>
+    <h2 class="detail-section-title">IDEAL PARA</h2>
+    <div class="ideal-grid">
+      ${p.idealFor.map(item => `
+      <div class="ideal-item">
+        ${checkIcon}
+        <span>${item}</span>
+      </div>`).join('')}
+    </div>
+  </div>` : ''}
+
+  <!-- FAQ -->
+  ${p.faq ? `
+  <div class="detail-section">
+    <p class="detail-section-label">Preguntas frecuentes</p>
+    <h2 class="detail-section-title">FAQ — ${p.name.toUpperCase()}</h2>
+    <div class="faq-list">
+      ${p.faq.map((item, i) => `
+      <div class="faq-item" id="faq-${p.id}-${i}">
+        <button class="faq-question" onclick="toggleFaq('faq-${p.id}-${i}')">
+          ${item.q}
+          ${arrowDown}
+        </button>
+        <div class="faq-answer">${item.a}</div>
+      </div>`).join('')}
+    </div>
+  </div>` : ''}
+
+  <!-- RESEÑAS -->
+  <div class="detail-section">
+    <p class="detail-section-label">Lo que dicen nuestros clientes</p>
+    <h2 class="detail-section-title">RESEÑAS VERIFICADAS</h2>
+    <div class="rich-reviews-summary">
+      <div class="rich-score">${p.rating}</div>
+      <div>
+        <div>${renderStars(p.rating)}</div>
+        <div style="font-size:.8rem;color:var(--muted-fg);margin-top:.25rem">Basado en ${p.reviews} reseñas verificadas</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-weight:600;font-size:.9rem">98% lo recomendaría</div>
+        <div style="font-size:.75rem;color:var(--muted-fg)">a un amigo o familiar</div>
+      </div>
+    </div>
+    <div class="rich-reviews-grid">
+      ${(p.customerReviews || []).map(r => `
+      <div class="rich-review-card">
+        <div>${renderStars(r.rating)}</div>
+        <p class="rich-review-text">"${r.text}"</p>
+        <p class="rich-review-author">— ${r.name}, ${r.city}</p>
+        <p class="rich-review-meta">Compra verificada · ${r.date}</p>
+      </div>`).join('')}
+    </div>
+  </div>
+
+  <!-- RELACIONADOS -->
+  ${related.length > 0 ? `
+  <div class="detail-section">
+    <p class="detail-section-label">Maximizá tus resultados</p>
+    <h2 class="detail-section-title">PRODUCTOS QUE COMBINAN BIEN</h2>
+    <div class="products-grid">${related.map((r,i) => renderProductCard(r,i)).join('')}</div>
+  </div>` : ''}`;
+
+  navigate('detail');
+}
+
+function selectFlavor(f) {
+  selectedFlavor = f;
+  document.querySelectorAll('.flavor-btn').forEach(b => {
+    b.classList.toggle('selected', b.textContent === f);
+  });
+}
+
+function toggleFaq(id) {
+  const item = document.getElementById(id);
+  if(!item) return;
+  const isOpen = item.classList.contains('open');
+  // Close siblings in same list
+  const list = item.closest('.faq-list');
+  if(list) list.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// ── CART ──
+function addToCart(product, flavor) {
+  if(!product) return;
+  const existing = cart.find(i => i.product.id === product.id);
+  if(existing) existing.quantity++;
+  else cart.push({ product, quantity: 1, flavor: flavor || null });
+  updateCartBadge();
+  showToast(`${product.name} agregado al carrito`);
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(i => i.product.id !== productId);
+  updateCartBadge();
+  renderCart();
+}
+
+function updateCartQty(productId, qty) {
+  if(qty <= 0) return removeFromCart(productId);
+  cart = cart.map(i => i.product.id === productId ? {...i, quantity: qty} : i);
+  renderCart();
+}
+
+function updateCartBadge() {
+  const total = cart.reduce((s,i) => s + i.quantity, 0);
+  const badge = document.getElementById('cart-badge');
+  badge.style.display = total > 0 ? 'flex' : 'none';
+  badge.textContent = total;
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-content');
+  if(!el) return;
+  if(cart.length === 0) {
+    el.innerHTML = `
+    <div class="cart-empty">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <h2 style="font-size:1.75rem;margin-bottom:.5rem">TU CARRITO ESTÁ VACÍO</h2>
+      <p class="text-muted" style="margin-bottom:2rem">Agregá productos para comenzar tu pedido.</p>
+      <button class="btn-primary" onclick="navigate('tienda')">Ver productos</button>
+    </div>`;
+    return;
+  }
+  const totalPrice = cart.reduce((s,i) => s + i.product.price * i.quantity, 0);
+  el.innerHTML = `
+  <div class="cart-grid">
+    <div>
+      ${cart.map(item => `
+      <div class="cart-item">
+        <div style="width:80px;height:80px;border-radius:var(--radius);background:var(--muted-bg);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0">
+          ${productEmoji[item.product.category]||'💊'}
+        </div>
+        <div style="flex:1;min-width:0">
+          <p class="cart-item-name">${item.product.name}</p>
+          ${item.flavor ? `<p class="cart-item-flavor">Sabor: ${item.flavor}</p>` : ''}
+          <p class="cart-item-price">${fmt(item.product.price)}</p>
+        </div>
+        <div class="cart-qty">
+          <button onclick="updateCartQty('${item.product.id}',${item.quantity-1})">−</button>
+          <span>${item.quantity}</span>
+          <button onclick="updateCartQty('${item.product.id}',${item.quantity+1})">+</button>
+        </div>
+        <button class="cart-remove" onclick="removeFromCart('${item.product.id}')" aria-label="Eliminar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+        </button>
+      </div>`).join('')}
+    </div>
+    <div>
+      <div class="cart-summary">
+        <h3>RESUMEN DE COMPRA</h3>
+        <div class="cart-summary-row"><span>Subtotal</span><span>${fmt(totalPrice)}</span></div>
+        <div class="cart-summary-row"><span>Envío</span><span>${totalPrice >= 200000 ? 'Gratis' : 'A calcular'}</span></div>
+        ${totalPrice < 200000 ? `<div class="cart-summary-row"><span style="color:var(--primary);font-size:.8rem">Te faltan ${fmt(200000-totalPrice)} para envío gratis</span></div>` : ''}
+        <div class="cart-summary-row total"><span>Total</span><span>${fmt(totalPrice)}</span></div>
+        <button class="btn-primary" style="width:100%;justify-content:center;margin-top:1rem;padding:1rem">
+          Finalizar compra
+        </button>
+        <button onclick="navigate('tienda')" style="width:100%;text-align:center;margin-top:.75rem;background:none;border:none;color:var(--muted-fg);font-size:.875rem;cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted-fg)'">
+          Seguir comprando
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── QUIZ ──
+const quizQuestions = [
+  { question: "¿Cuál es tu objetivo principal?", options: ["Ganar músculo","Bajar grasa","Mejorar rendimiento","Más energía"] },
+  { question: "¿Cuál es tu nivel de entrenamiento?", options: ["Principiante","Intermedio","Avanzado"] },
+  { question: "¿Cuántos días a la semana entrenás?", options: ["1-2 días","3-4 días","5+ días"] },
+  { question: "¿Cuál es tu rango de edad?", options: ["18-25","26-35","36-45","45+"] },
+  { question: "¿Actualmente tomás algún suplemento?", options: ["No, nunca tomé","Sí, proteína","Sí, varios suplementos","Tomé pero dejé"] },
+];
+let quizStep = 0, quizAnswers = [], quizFinished = false;
+
+function renderQuiz() {
+  const el = document.getElementById('quiz-content');
+  if(!el) return;
+  if(!quizFinished) {
+    el.innerHTML = `
+    <div style="text-align:center;margin-bottom:2rem">
+      <div class="quiz-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:.5rem">ENCONTRÁ TUS SUPLEMENTOS <span class="text-primary neon-glow">IDEALES</span></h1>
+      <div class="quiz-progress">
+        ${quizQuestions.map((_,i) => `<div class="quiz-dot ${i<=quizStep?'done':''}"></div>`).join('')}
+      </div>
+    </div>
+    <div class="quiz-card">
+      <p class="quiz-num">Pregunta ${quizStep+1} de ${quizQuestions.length}</p>
+      <h2 class="quiz-q">${quizQuestions[quizStep].question}</h2>
+      <div class="quiz-options">
+        ${quizQuestions[quizStep].options.map((opt,i) => `
+        <button class="quiz-opt" onclick="quizAnswer(${i})">
+          ${opt}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>`).join('')}
+      </div>
+      ${quizStep > 0 ? `<button class="quiz-back" onclick="quizBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Volver
+      </button>` : ''}
+    </div>`;
+  } else {
+    // Get recommendations
+    const recIds = getQuizRecs(quizAnswers);
+    const recProducts = products.filter(p => recIds.includes(p.id));
+    const total = recProducts.reduce((s,p)=>s+p.price,0);
+
+    el.innerHTML = `
+    <div style="text-align:center;margin-bottom:2rem">
+      <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:.5rem">TU PLAN DE <span class="text-primary neon-glow">SUPLEMENTACIÓN</span></h1>
+      <p class="text-muted">Según tus respuestas, te recomendamos:</p>
+    </div>
+    <div style="margin-bottom:2rem">
+      ${recProducts.map(p => `
+      <div class="quiz-result-prod">
+        <div style="width:80px;height:80px;border-radius:var(--radius);background:var(--muted-bg);display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0">${productEmoji[p.category]||'💊'}</div>
+        <div style="flex:1">
+          <p style="font-weight:600">${p.name}</p>
+          <p class="text-muted" style="font-size:.85rem">${p.benefits[0]}</p>
+        </div>
+        <span style="font-weight:700">${fmt(p.price)}</span>
+      </div>`).join('')}
+    </div>
+    <div class="quiz-result-total">
+      <p>Total del combo:</p>
+      <div class="total-price">${fmt(total)}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.75rem">
+      <button class="btn-primary" style="width:100%;justify-content:center;padding:1rem" onclick="quizAddCombo([${recProducts.map(p=>"'"+p.id+"'").join(',')}])">
+        Agregar combo al carrito
+      </button>
+      <button onclick="quizRestart()" style="font-size:.875rem;color:var(--muted-fg);background:none;border:none;cursor:pointer;text-align:center;transition:color .2s" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted-fg)'">
+        Hacer el test de nuevo
+      </button>
+      <a href="#" onclick="navigate('tienda')" style="font-size:.875rem;color:var(--primary);text-align:center;font-weight:600">
+        Ver todos los productos
+      </a>
+    </div>`;
+  }
+}
+
+function quizAnswer(i) {
+  quizAnswers.push(i);
+  if(quizStep < quizQuestions.length - 1) {
+    quizStep++;
+    renderQuiz();
+  } else {
+    quizFinished = true;
+    renderQuiz();
+  }
+}
+
+function quizBack() {
+  quizStep--;
+  quizAnswers = quizAnswers.slice(0,-1);
+  renderQuiz();
+}
+
+function quizRestart() {
+  quizStep = 0; quizAnswers = []; quizFinished = false;
+  renderQuiz();
+}
+
+function getQuizRecs(answers) {
+  const recs = ["1"]; // always protein
+  if(answers[0] === 0 || answers[0] === 2) recs.push("2"); // muscle/performance → creatine
+  if(answers[0] === 3 || (answers[1] !== undefined && answers[1] >= 1)) recs.push("3"); // energy/not-beginner → pre-workout
+  if(answers[0] === 1) recs.push("5"); // fat loss → burner
+  if(answers[0] === 0 && answers[2] !== undefined && answers[2] >= 1) recs.push("4"); // muscle + freq → bcaa
+  return [...new Set(recs)];
+}
+
+function quizAddCombo(ids) {
+  ids.forEach(id => {
+    const p = products.find(x => x.id === id);
+    if(p) addToCart(p);
+  });
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const tc = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>${msg}</span>`;
+  tc.appendChild(t);
+  setTimeout(() => t.remove(), 3100);
+}
+
+// ── MOBILE MENU ──
+let mobileOpen = false;
+function toggleMobile() {
+  mobileOpen = !mobileOpen;
+  const m = document.getElementById('mobile-menu');
+  m.classList.toggle('open', mobileOpen);
+  document.getElementById('menu-icon-open').style.display = mobileOpen ? 'none' : 'block';
+  document.getElementById('menu-icon-close').style.display = mobileOpen ? 'block' : 'none';
+}
+function closeMobile() {
+  mobileOpen = false;
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('menu-icon-open').style.display = 'block';
+  document.getElementById('menu-icon-close').style.display = 'none';
+}
+
+// ── FADE IN OBSERVER ──
+function triggerFadeIn() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.fade-in-view:not(.visible)').forEach(el => obs.observe(el));
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  renderFeatured();
+  renderShop();
+  triggerFadeIn();
+});
+</script>
+</body>
+</html>
