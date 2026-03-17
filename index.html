@@ -1388,6 +1388,19 @@ async function sbPost(endpoint, body) {
   return res.ok;
 }
 
+function normalizeFeaturedFlag(product) {
+  const raw = product?.featured ?? product?.is_featured ?? product?.destacado ?? product?.destacada ?? false;
+  return raw === true || raw === 'true' || raw === 1 || raw === '1';
+}
+
+function normalizeIncomingProduct(product) {
+  if (!product) return product;
+  return {
+    ...product,
+    featured: normalizeFeaturedFlag(product),
+  };
+}
+
 // ── CARGAR PRODUCTOS DESDE TIENDA NUBE (via Netlify function) ──
 async function loadProductsFromDB() {
   try {
@@ -1396,8 +1409,8 @@ async function loadProductsFromDB() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     if (data && data.length > 0) {
-      products = data;
-      // Recalcular categorías y destacados con los datos reales de Tienda Nube
+      products = data.map(normalizeIncomingProduct);
+      // Recalcular categorías y destacados con los datos reales de Tienda Nube/Supabase
       categories = [...new Set(products.map(p => p.category).filter(Boolean))].sort();
       featuredProducts = products.filter(p => p.featured);
       // Si TN no tiene destacados marcados, mostrar los primeros 4
